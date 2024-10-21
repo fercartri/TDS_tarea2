@@ -55,11 +55,15 @@ public class GestorFacturas {
     public void agregar(Factura f){
         if(f == null)
             throw new IllegalArgumentException();
-            
+
         if(f.getFecha().isBefore(fechaInicio) || f.getFecha().isAfter(fechaFin))
             throw new IllegalArgumentException();
 
         facturas.add(f);
+    }
+
+    public void agregar(ArrayList<Factura> fs){
+        
     }
 
 }

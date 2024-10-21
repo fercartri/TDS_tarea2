@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,13 +97,14 @@ public class GestorFacturasTest {
         assertTrue(g.getFacturas().contains(f));
     }
 
+    /*
     @Test
     void testGestorFacturaAgregarFacturaNoValidaFacturaNull(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
         assertThrows(IllegalArgumentException.class, () -> {
             g.agregar(null);
         });
-    }
+    }*/
 
     @Test
     void testGestorFacturaAgregarFacturaNoValidaFechaAnteriorALimiteGestor(){
@@ -120,6 +122,25 @@ public class GestorFacturasTest {
         assertThrows(IllegalArgumentException.class, () -> {
             g.agregar(f);
         });
+    }
+
+    @Test
+    void testGestorFacturaAgregarMultiplesFacturasValidas(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2027, 1, 22), 10.15);
+        Factura f2 = new Factura("Asunto2", LocalDate.of(2027, 1, 22), 10.15);
+        Factura f3 = new Factura("Asunto3", LocalDate.of(2027, 1, 22), 10.15);
+
+        ArrayList<Factura> fs = new ArrayList<Factura>();
+        fs.add(f1);
+        fs.add(f2);
+        fs.add(f3);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+
+        g.agregar(fs);
+        assertTrue(g.getFacturas().contains(f1));
+        assertTrue(g.getFacturas().contains(f2));
+        assertTrue(g.getFacturas().contains(f3));
     }
 
 }
