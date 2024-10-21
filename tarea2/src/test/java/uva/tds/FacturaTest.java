@@ -25,4 +25,11 @@ public class FacturaTest {
         });
     }
 
+    @Test
+    void testFacturaNoValidaFechaNull(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Factura f = new Factura("Argumento", null, 5.5);
+        });
+    }
+
 }
