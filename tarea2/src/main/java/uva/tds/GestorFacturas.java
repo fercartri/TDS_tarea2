@@ -9,7 +9,7 @@ public class GestorFacturas {
     private LocalDate fechaFin;
     private String nombre;
     private boolean estado;
-    private ArrayList<Factura> facturas;
+    private ArrayList<Factura> facturas = new ArrayList<Factura>();
 
     public GestorFacturas(LocalDate inicio, LocalDate fin, String nombre){
         if(inicio == null || fin == null || nombre == null)
@@ -53,7 +53,7 @@ public class GestorFacturas {
     }
 
     public void agregar(Factura f){
-
+        facturas.add(f);
     }
 
 }
