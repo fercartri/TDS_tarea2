@@ -1,6 +1,7 @@
 package uva.tds;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -16,4 +17,12 @@ public class FacturaTest {
         assertEquals(f.getFecha(), LocalDate.of(2025, 1, 22));
         assertEquals(f.getImporte(), 5.5);
     }
+
+    @Test
+    void testFacturaNoValidaAsuntoNull(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Factura f = new Factura(null, LocalDate.of(2025, 1, 22), 5.5);
+        });
+    }
+
 }
