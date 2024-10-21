@@ -42,4 +42,8 @@ public class GestorFacturas {
         return estado;
     }
 
+    public void setEstado(boolean estado){
+        
+    }
+
 }

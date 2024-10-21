@@ -60,4 +60,11 @@ public class GestorFacturasTest {
         });
     }
 
+    @Test
+    void testGestorFacturaCambioEstadoDeTrueAFalse(){
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
+        g.setEstado(false);
+        assertEquals(g.getEstado(), false);
+    }
+
 }
