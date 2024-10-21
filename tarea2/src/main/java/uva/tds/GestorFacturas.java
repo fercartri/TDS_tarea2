@@ -63,7 +63,8 @@ public class GestorFacturas {
     }
 
     public void agregar(ArrayList<Factura> fs){
-        
+        for(Factura f : fs)
+            agregar(f);
     }
 
 }

@@ -126,9 +126,9 @@ public class GestorFacturasTest {
 
     @Test
     void testGestorFacturaAgregarMultiplesFacturasValidas(){
-        Factura f1 = new Factura("Asunto1", LocalDate.of(2027, 1, 22), 10.15);
-        Factura f2 = new Factura("Asunto2", LocalDate.of(2027, 1, 22), 10.15);
-        Factura f3 = new Factura("Asunto3", LocalDate.of(2027, 1, 22), 10.15);
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
+        Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 1, 22), 10.15);
+        Factura f3 = new Factura("Asunto3", LocalDate.of(2025, 1, 22), 10.15);
 
         ArrayList<Factura> fs = new ArrayList<Factura>();
         fs.add(f1);
