@@ -2,6 +2,7 @@ package uva.tds;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
@@ -73,6 +74,14 @@ public class GestorFacturasTest {
         g.setEstado(false);
         g.setEstado(true);
         assertEquals(g.getEstado(), true);
+    }
+
+    @Test
+    void testGestorFacturaAgregarFacturaValida(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 10.15);
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        g.agregar(f);
+        assertTrue(g.getFacturas().contains(f));
     }
 
 }

@@ -1,6 +1,7 @@
 package uva.tds;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class GestorFacturas {
 
@@ -8,6 +9,7 @@ public class GestorFacturas {
     private LocalDate fechaFin;
     private String nombre;
     private boolean estado;
+    private ArrayList<Factura> facturas;
 
     public GestorFacturas(LocalDate inicio, LocalDate fin, String nombre){
         if(inicio == null || fin == null || nombre == null)
@@ -18,10 +20,6 @@ public class GestorFacturas {
 
         if(fin.isBefore(inicio))
             throw new IllegalArgumentException();
-        
-
-
-
 
         this.fechaInicio = inicio;
         this.fechaFin = fin;
@@ -41,9 +39,21 @@ public class GestorFacturas {
     public boolean getEstado() {
         return estado;
     }
+    public ArrayList<Factura> getFacturas() {
+        ArrayList<Factura> f = new ArrayList<Factura>();
+
+        for(Factura e : facturas)
+            f.add(e);
+
+        return f;
+    }
 
     public void setEstado(boolean estado){
         this.estado = estado;
+    }
+
+    public void agregar(Factura f){
+
     }
 
 }
