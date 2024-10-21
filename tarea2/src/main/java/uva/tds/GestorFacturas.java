@@ -43,7 +43,7 @@ public class GestorFacturas {
     }
 
     public void setEstado(boolean estado){
-        
+        this.estado = estado;
     }
 
 }

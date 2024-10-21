@@ -67,4 +67,7 @@ public class GestorFacturasTest {
         assertEquals(g.getEstado(), false);
     }
 
+   
+
+
 }
