@@ -53,9 +53,9 @@ public class GestorFacturas {
     }
 
     public void agregar(Factura f){
-        if(f.getFecha().isBefore(fechaInicio))
+        if(f.getFecha().isBefore(fechaInicio) || f.getFecha().isAfter(fechaFin))
             throw new IllegalArgumentException();
-            
+
         facturas.add(f);
     }
 
