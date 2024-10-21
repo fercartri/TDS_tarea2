@@ -39,4 +39,13 @@ public class FacturaTest {
         });
     }
 
+    //Tests para la fecha
+
+    @Test
+    void testFacturaNoValidaImporteMenorLimite(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), -0.9);
+        });
+    }
+
 }
