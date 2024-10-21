@@ -15,6 +15,9 @@ public class GestorFacturas {
 
         if(nombre.length() < 1 || nombre.length() > 10)
             throw new IllegalArgumentException();
+
+        if(fin.isBefore(inicio))
+            throw new IllegalArgumentException();
         
         this.fechaInicio = inicio;
         this.fechaFin = fin;

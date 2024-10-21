@@ -52,5 +52,11 @@ public class GestorFacturasTest {
         });
     }
 
+    @Test
+    void testGestorFacturaNoValidoFechaFinMenorQueFechaInicio(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            GestorFacturas g = new GestorFacturas(LocalDate.of(2025, 4, 1), LocalDate.of(2024, 12, 22), "Nombre");
+        });
+    }
 
 }
