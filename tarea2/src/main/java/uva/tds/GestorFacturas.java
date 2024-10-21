@@ -10,7 +10,9 @@ public class GestorFacturas {
 
 
     public GestorFacturas(LocalDate inicio, LocalDate fin, String nombre){
-
+        this.fechaInicio = inicio;
+        this.fechaFin = fin;
+        this.nombre = nombre;
     }
 
     public LocalDate getFechaInicio() {
