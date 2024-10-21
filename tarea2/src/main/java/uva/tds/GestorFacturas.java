@@ -7,7 +7,7 @@ public class GestorFacturas {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private String nombre;
-
+    private boolean estado;
 
     public GestorFacturas(LocalDate inicio, LocalDate fin, String nombre){
         if(inicio == null || fin == null || nombre == null)
@@ -19,7 +19,10 @@ public class GestorFacturas {
         if(fin.isBefore(inicio))
             throw new IllegalArgumentException();
         
-            
+
+
+
+
         this.fechaInicio = inicio;
         this.fechaFin = fin;
         this.nombre = nombre;
@@ -33,6 +36,9 @@ public class GestorFacturas {
     }
     public String getNombre() {
         return nombre;
+    }
+    public boolean getEstado() {
+        return estado;
     }
 
 }

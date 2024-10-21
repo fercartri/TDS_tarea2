@@ -15,6 +15,7 @@ public class GestorFacturasTest {
         assertEquals(g.getFechaInicio(), LocalDate.of(2024, 12, 22));
         assertEquals(g.getFechaFin(), LocalDate.of(2025, 4, 1));
         assertEquals(g.getNombre(), "Nombre");
+        assertEquals(g.getEstado(), true);
     }
 
     @Test
