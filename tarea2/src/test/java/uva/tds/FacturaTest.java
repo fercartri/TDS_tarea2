@@ -32,4 +32,11 @@ public class FacturaTest {
         });
     }
 
+    @Test
+    void testFacturaNoValidaAsuntoMenorLimite(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Factura f = new Factura("", LocalDate.of(2025, 1, 22), 5.5);
+        });
+    }
+
 }
