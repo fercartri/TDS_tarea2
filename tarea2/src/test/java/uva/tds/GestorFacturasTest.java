@@ -67,7 +67,12 @@ public class GestorFacturasTest {
         assertEquals(g.getEstado(), false);
     }
 
-   
-
+    @Test
+    void testGestorFacturaCambioEstadoDeFalseATrue(){
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
+        g.setEstado(false);
+        g.setEstado(true);
+        assertEquals(g.getEstado(), true);
+    }
 
 }
