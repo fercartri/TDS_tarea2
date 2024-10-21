@@ -9,20 +9,20 @@ public class Factura {
     private double importe;
 
 
-    
-
-
-    public Factura(String Asunto, LocalDate fecha, double importe){
+    public Factura(String asunto, LocalDate fecha, double importe){
+        this.asunto = asunto;
+        this.fecha = fecha;
+        this.importe = importe;
 
     }
 
     public String getAsunto() {
-        return "";
+        return asunto;
     }
     public LocalDate getFecha() {
-        return null;
+        return fecha;
     }
     public double getImporte() {
-        return 0;
+        return importe;
     }
 }
