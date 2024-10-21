@@ -16,6 +16,9 @@ public class Factura {
         if(asunto.length() < 1)
             throw new IllegalArgumentException();
 
+        if(importe < 0)
+            throw new IllegalArgumentException();
+
         this.asunto = asunto;
         this.fecha = fecha;
         this.importe = importe;
