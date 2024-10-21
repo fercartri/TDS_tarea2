@@ -77,6 +77,17 @@ public class GestorFacturasTest {
     }
 
     @Test
+    void testGestorFacturaCambioEstadoMantenerEstado(){
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
+        g.setEstado(true);
+        assertEquals(g.getEstado(), true);
+        g.setEstado(false);
+        assertEquals(g.getEstado(), false);
+        g.setEstado(false);
+        assertEquals(g.getEstado(), false);
+    }
+
+    @Test
     void testGestorFacturaAgregarFacturaValida(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 10.15);
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
