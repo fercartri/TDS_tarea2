@@ -13,7 +13,7 @@ public class GestorFacturas {
         if(inicio == null || fin == null || nombre == null)
             throw new IllegalArgumentException();
 
-        if(nombre.length() < 1)
+        if(nombre.length() < 1 || nombre.length() > 10)
             throw new IllegalArgumentException();
         
         this.fechaInicio = inicio;
