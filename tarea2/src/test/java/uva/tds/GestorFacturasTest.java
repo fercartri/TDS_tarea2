@@ -1,6 +1,7 @@
 package uva.tds;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,13 @@ public class GestorFacturasTest {
         assertEquals(g.getFechaInicio(), LocalDate.of(2024, 12, 22));
         assertEquals(g.getFechaFin(), LocalDate.of(2025, 4, 1));
         assertEquals(g.getNombre(), "Nombre");
+    }
+
+    @Test
+    void testGestorFacturaNoValidoFechaInicioNull(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            GestorFacturas g = new GestorFacturas(null, LocalDate.of(2025, 4, 1), "Nombre");
+        });
     }
 
 
