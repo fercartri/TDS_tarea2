@@ -39,8 +39,6 @@ public class FacturaTest {
         });
     }
 
-    //Tests para la fecha
-
     @Test
     void testFacturaNoValidaImporteMenorLimite(){
         assertThrows(IllegalArgumentException.class, () -> {
