@@ -12,6 +12,9 @@ public class Factura {
     public Factura(String asunto, LocalDate fecha, double importe){
         if(asunto == null || fecha == null)
             throw new IllegalArgumentException();
+        
+        if(asunto.length() < 1)
+            throw new IllegalArgumentException();
 
         this.asunto = asunto;
         this.fecha = fecha;
