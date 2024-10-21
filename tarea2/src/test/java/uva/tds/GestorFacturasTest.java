@@ -45,5 +45,12 @@ public class GestorFacturasTest {
         });
     }
 
+    @Test
+    void testGestorFacturaNoValidoNombreSuperiorLimite(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 1), "Aaaaaaaaaaa");
+        });
+    }
+
 
 }
