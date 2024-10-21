@@ -26,6 +26,7 @@ public class GestorFacturas {
         this.fechaInicio = inicio;
         this.fechaFin = fin;
         this.nombre = nombre;
+        this.estado = true;
     }
 
     public LocalDate getFechaInicio() {
