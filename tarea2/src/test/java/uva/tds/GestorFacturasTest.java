@@ -1,6 +1,7 @@
 package uva.tds;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,7 +17,7 @@ public class GestorFacturasTest {
         assertEquals(g.getFechaInicio(), LocalDate.of(2024, 12, 22));
         assertEquals(g.getFechaFin(), LocalDate.of(2025, 4, 1));
         assertEquals(g.getNombre(), "Nombre");
-        assertEquals(g.getEstado(), true);
+        assertTrue(g.getEstado());
     }
 
     @Test
@@ -65,7 +66,7 @@ public class GestorFacturasTest {
     void testGestorFacturaCambioEstadoDeTrueAFalse(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
         g.setEstado(false);
-        assertEquals(g.getEstado(), false);
+        assertFalse(g.getEstado());
     }
 
     @Test
@@ -73,18 +74,18 @@ public class GestorFacturasTest {
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
         g.setEstado(false);
         g.setEstado(true);
-        assertEquals(g.getEstado(), true);
+        assertTrue(g.getEstado());
     }
 
     @Test
     void testGestorFacturaCambioEstadoMantenerEstado(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
         g.setEstado(true);
-        assertEquals(g.getEstado(), true);
+        assertTrue(g.getEstado());
         g.setEstado(false);
-        assertEquals(g.getEstado(), false);
+        assertFalse(g.getEstado());
         g.setEstado(false);
-        assertEquals(g.getEstado(), false);
+        assertFalse(g.getEstado());
     }
 
     @Test
@@ -97,26 +98,26 @@ public class GestorFacturasTest {
 
     @Test
     void testGestorFacturaAgregarFacturaNoValidaFacturaNull(){
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
         assertThrows(IllegalArgumentException.class, () -> {
-            GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
             g.agregar(null);
         });
     }
 
     @Test
     void testGestorFacturaAgregarFacturaNoValidaFechaAnteriorALimiteGestor(){
+        Factura f = new Factura("Asunto", LocalDate.of(2022, 1, 22), 10.15);
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
         assertThrows(IllegalArgumentException.class, () -> {
-            Factura f = new Factura("Asunto", LocalDate.of(2022, 1, 22), 10.15);
-            GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
             g.agregar(f);
         });
     }
 
     @Test
     void testGestorFacturaAgregarFacturaNoValidaFechaPosteriorALimiteGestor(){
+        Factura f = new Factura("Asunto", LocalDate.of(2027, 1, 22), 10.15);
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
         assertThrows(IllegalArgumentException.class, () -> {
-            Factura f = new Factura("Asunto", LocalDate.of(2027, 1, 22), 10.15);
-            GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
             g.agregar(f);
         });
     }
