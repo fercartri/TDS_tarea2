@@ -10,6 +10,9 @@ public class GestorFacturas {
 
 
     public GestorFacturas(LocalDate inicio, LocalDate fin, String nombre){
+        if(inicio == null)
+            throw new IllegalArgumentException();
+        
         this.fechaInicio = inicio;
         this.fechaFin = fin;
         this.nombre = nombre;
