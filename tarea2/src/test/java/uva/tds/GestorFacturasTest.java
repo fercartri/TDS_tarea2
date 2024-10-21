@@ -85,6 +85,14 @@ public class GestorFacturasTest {
     }
 
     @Test
+    void testGestorFacturaAgregarFacturaNoValidaFacturaNull(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+            g.agregar(null);
+        });
+    }
+
+    @Test
     void testGestorFacturaAgregarFacturaNoValidaFechaAnteriorALimiteGestor(){
         assertThrows(IllegalArgumentException.class, () -> {
             Factura f = new Factura("Asunto", LocalDate.of(2022, 1, 22), 10.15);
