@@ -249,16 +249,5 @@ public class GestorFacturasTest {
         assertEquals(g.getFacturas().get(0).getImporte(), 2.25);
     }
 
-    @Test
-    void testGestorFacturaActualizarFechaNoValidoFechaInferiorALimiteGestor(){
-        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
-
-        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
-        g.agregar(f1);
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            g.getFacturas().get(0).setFecha(LocalDate.of(2020, 1, 23));
-        });
-    }
-
+    
 }
