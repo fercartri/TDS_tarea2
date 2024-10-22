@@ -194,7 +194,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaAgregarFacturaGestorCerrado(){
+    void testGestorFacturaAgregarFacturaNoValidoGestorCerrado(){
         Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -202,6 +202,23 @@ public class GestorFacturasTest {
 
         assertThrows(IllegalStateException.class, () -> {
             g.agregar(f1);
+        });
+    }
+
+    @Test
+    void testGestorFacturaAgregarMultiplesFacturasNoValidoGestorCerrado(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
+        Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 1, 22), 10.15);
+
+        ArrayList<Factura> fs = new ArrayList<Factura>();
+        fs.add(f1);
+        fs.add(f2);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        g.setEstado(false);
+
+        assertThrows(IllegalStateException.class, () -> {
+            g.agregar(fs);
         });
     }
 
