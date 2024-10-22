@@ -27,18 +27,23 @@ public class GestorFacturas {
         this.estado = true;
     }
 
+    //Getters
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
+
     public LocalDate getFechaFin() {
         return fechaFin;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public boolean getEstado() {
         return estado;
     }
+
     public ArrayList<Factura> getFacturas() {
         ArrayList<Factura> f = new ArrayList<Factura>();
 
@@ -48,9 +53,11 @@ public class GestorFacturas {
         return f;
     }
 
+    //Setters
     public void setEstado(boolean estado){
         this.estado = estado;
     }
+    
 
     public void agregar(Factura f){
         if(f == null)

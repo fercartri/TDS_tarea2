@@ -97,15 +97,6 @@ public class GestorFacturasTest {
         assertTrue(g.getFacturas().contains(f));
     }
 
-    /*
-    @Test
-    void testGestorFacturaAgregarFacturaNoValidaFacturaNull(){
-        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
-        assertThrows(IllegalArgumentException.class, () -> {
-            g.agregar(null);
-        });
-    }*/
-
     @Test
     void testGestorFacturaAgregarFacturaNoValidaFechaAnteriorALimiteGestor(){
         Factura f = new Factura("Asunto", LocalDate.of(2022, 1, 22), 10.15);

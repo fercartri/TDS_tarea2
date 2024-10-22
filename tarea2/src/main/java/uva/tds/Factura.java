@@ -8,7 +8,6 @@ public class Factura {
     private LocalDate fecha;
     private double importe;
 
-
     public Factura(String asunto, LocalDate fecha, double importe){
         if(asunto == null || fecha == null)
             throw new IllegalArgumentException();
@@ -22,25 +21,29 @@ public class Factura {
         this.asunto = asunto;
         this.fecha = fecha;
         this.importe = importe;
-
     }
 
+    //Getters
     public String getAsunto() {
         return asunto;
     }
+
     public LocalDate getFecha() {
         return fecha;
     }
+
     public double getImporte() {
         return importe;
     }
 
+    //Setters
     public void setFecha(LocalDate f){
         if(f == null)
             throw new IllegalArgumentException();
 
         this.fecha = f;
     }
+
     public void setImporte(double i){
         if(i < 0)
             throw new IllegalArgumentException();
