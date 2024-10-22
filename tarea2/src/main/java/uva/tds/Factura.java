@@ -34,4 +34,9 @@ public class Factura {
     public double getImporte() {
         return importe;
     }
+
+    @Override
+    public boolean equals(Object o){
+        return this.asunto.equals(((Factura) o).getAsunto());
+    }
 }
