@@ -35,6 +35,13 @@ public class Factura {
         return importe;
     }
 
+    public void setFecha(LocalDate f){
+
+    }
+    public void setImporte(double i){
+        
+    }
+
     @Override
     public boolean equals(Object o){
         return this.asunto.equals(((Factura) o).getAsunto());
