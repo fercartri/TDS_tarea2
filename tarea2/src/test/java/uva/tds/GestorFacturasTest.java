@@ -235,4 +235,18 @@ public class GestorFacturasTest {
         assertEquals(g.getFacturas().get(0).getImporte(), 2.25);
     }
 
+    @Test
+    void testGestorFacturaActualizarFechaEImporteValidoConGestorCerrado(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        g.agregar(f1);
+        g.setEstado(false);        
+
+        g.getFacturas().get(0).setFecha(LocalDate.of(2025, 1, 23));
+        g.getFacturas().get(0).setImporte(2.25);
+        assertEquals(g.getFacturas().get(0).getFecha(), LocalDate.of(2025, 1, 23));
+        assertEquals(g.getFacturas().get(0).getImporte(), 2.25);
+    }
+
 }
