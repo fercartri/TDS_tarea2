@@ -36,10 +36,16 @@ public class Factura {
     }
 
     public void setFecha(LocalDate f){
+        if(f == null)
+            throw new IllegalArgumentException();
 
+        this.fecha = f;
     }
     public void setImporte(double i){
-        
+        if(i < 0)
+            throw new IllegalArgumentException();
+
+        this.importe = i;
     }
 
     @Override
