@@ -161,6 +161,21 @@ public class GestorFacturasTest {
     }
 
     @Test
+    void testGestorFacturaAgregarFacturaNoValidaFacturaRepetida(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
+        Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 1, 22), 10.15);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+
+        g.agregar(f1);
+        g.agregar(f2);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            g.agregar(f1);
+        });
+    }
+
+    @Test
     void testGestorFacturaAgregarMultiplesFacturasNoValidaFacturaRepetidaEnArray(){
         Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
         Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 1, 22), 10.15);
@@ -176,5 +191,7 @@ public class GestorFacturasTest {
             g.agregar(fs);
         });
     }
+
+    
 
 }
