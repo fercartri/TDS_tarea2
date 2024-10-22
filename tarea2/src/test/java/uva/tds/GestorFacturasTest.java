@@ -193,6 +193,16 @@ public class GestorFacturasTest {
         });
     }
 
-    
+    @Test
+    void testGestorFacturaAgregarFacturaGestorCerrado(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        g.setEstado(false);
+
+        assertThrows(IllegalStateException.class, () -> {
+            g.agregar(f1);
+        });
+    }
 
 }
