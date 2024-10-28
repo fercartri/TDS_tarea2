@@ -9,10 +9,10 @@ public class Factura {
     private double importe;
 
     /**
-     * Construir un nuevo objeto factura
-     * @param asunto un String
-     * @param fecha un LocalDate
-     * @param importe un double
+     * Construye un nuevo objeto factura
+     * @param asunto un String con el asunto de la factura
+     * @param fecha un LocalDate con la fecha de la factura
+     * @param importe un double con el importe de la factura
      * @throws IllegalArgumentException si asunto es null
      * @throws IllegalArgumentException si fecha es null
      * @throws IllegalArgumentException si asunto es una cadena vacía
