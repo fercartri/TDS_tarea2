@@ -72,4 +72,12 @@ public class FacturaTest {
         assertEquals(f.getImporte(), 0);
     }
 
+    @Test
+    void testFacturaSetImporteConImporteMenorACero(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 5.5);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            f.setImporte(-0.1);
+        });
+    }
 }
