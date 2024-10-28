@@ -158,4 +158,12 @@ public class GestorFacturas {
             agregar(f);
     }
 
+    public void setFecha(String asunto, LocalDate fecha){
+
+    }
+
+    public void setImporte(String asunto, double importe){
+
+    }
+
 }

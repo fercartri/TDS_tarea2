@@ -211,33 +211,6 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarFechaEImporteValidoConGestorAbierto(){
-        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
-
-        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
-        g.agregar(f1);
-
-        g.getFacturas().get(0).setFecha(LocalDate.of(2025, 1, 23));
-        g.getFacturas().get(0).setImporte(2.25);
-        assertEquals(g.getFacturas().get(0).getFecha(), LocalDate.of(2025, 1, 23));
-        assertEquals(g.getFacturas().get(0).getImporte(), 2.25);
-    }
-
-    @Test
-    void testGestorFacturaActualizarFechaEImporteValidoConGestorCerrado(){
-        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 1, 22), 10.15);
-
-        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
-        g.agregar(f1);
-        g.setEstado(false);        
-
-        g.getFacturas().get(0).setFecha(LocalDate.of(2025, 1, 23));
-        g.getFacturas().get(0).setImporte(2.25);
-        assertEquals(g.getFacturas().get(0).getFecha(), LocalDate.of(2025, 1, 23));
-        assertEquals(g.getFacturas().get(0).getImporte(), 2.25);
-    }
-
-    @Test
     void testGestorFacturaListaDeFacturasPorFecha(){
         Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 2, 22), 10.15);
         Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 3, 22), 10.15);
@@ -281,5 +254,36 @@ public class GestorFacturasTest {
         assertEquals(ordenado[2], f2);
     }
 
-    
+
+    @Test
+    void testGestorFacturaActualizarFechaEImporteValidosEnGestorAbiertoYCerrado(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 2, 22), 2.15);
+        Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 3, 22), 0.15);
+        Factura f3 = new Factura("Asunto3", LocalDate.of(2025, 1, 22), 1.15);
+
+        ArrayList<Factura> fs = new ArrayList<Factura>();
+        fs.add(f1);
+        fs.add(f2);
+        fs.add(f3);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        
+        g.agregar(fs);
+
+        g.setFecha("Asunto2", LocalDate.of(2025, 4, 22));
+        g.setImporte("Asunto2", 0);
+
+        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f2)).getFecha(), LocalDate.of(2025, 4, 22));
+        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f2)).getImporte(), 0);
+
+        g.setEstado(false);
+
+        g.setFecha("Asunto2", LocalDate.of(2025, 5, 22));
+        g.setImporte("Asunto2", 10.50);
+
+        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f2)).getFecha(), LocalDate.of(2025, 5, 22));
+        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f2)).getImporte(), 10.50);
+
+
+    }
 }
