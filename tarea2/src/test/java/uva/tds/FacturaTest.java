@@ -10,9 +10,9 @@ public class FacturaTest {
 
     @Test
     void testFacturaCreacionFacturaValida(){
-        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 0);
+        Factura f = new Factura("A", LocalDate.of(2025, 1, 22), 0);
 
-        assertEquals(f.getAsunto(), "Asunto");
+        assertEquals(f.getAsunto(), "A");
         assertEquals(f.getFecha(), LocalDate.of(2025, 1, 22));
         assertEquals(f.getImporte(), 0);
     }
@@ -27,7 +27,7 @@ public class FacturaTest {
     @Test
     void testFacturaCreacionFacturaNoValidaFechaNull(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Factura f = new Factura("Argumento", null, 5.5);
+            Factura f = new Factura("Asunto", null, 5.5);
         });
     }
 
