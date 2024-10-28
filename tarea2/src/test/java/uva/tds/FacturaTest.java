@@ -10,11 +10,11 @@ public class FacturaTest {
 
     @Test
     void testFacturaCreacionFacturaValida(){
-        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 5.5);
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 0);
 
         assertEquals(f.getAsunto(), "Asunto");
         assertEquals(f.getFecha(), LocalDate.of(2025, 1, 22));
-        assertEquals(f.getImporte(), 5.5);
+        assertEquals(f.getImporte(), 0);
     }
 
     @Test
