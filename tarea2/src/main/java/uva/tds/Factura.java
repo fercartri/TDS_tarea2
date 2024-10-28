@@ -8,6 +8,16 @@ public class Factura {
     private LocalDate fecha;
     private double importe;
 
+    /**
+     * Construir un nuevo objeto factura
+     * @param asunto un String
+     * @param fecha un LocalDate
+     * @param importe un double
+     * @throws IllegalArgumentException si asunto es null
+     * @throws IllegalArgumentException si fecha es null
+     * @throws IllegalArgumentException si asunto es una cadena vacía
+     * @throws IllegalArgumentException si importe menor que cero
+     */
     public Factura(String asunto, LocalDate fecha, double importe){
         if(asunto == null || fecha == null)
             throw new IllegalArgumentException();
@@ -23,20 +33,35 @@ public class Factura {
         this.importe = importe;
     }
 
-    //Getters
+    /**
+     * Consulta el asunto de la factura
+     * @return un String con dicho asunto
+     */
     public String getAsunto() {
         return asunto;
     }
 
+    /**
+     * Consulta la fecha de la factura
+     * @return un LocalDate con dicha fecha
+     */
     public LocalDate getFecha() {
         return fecha;
     }
 
+    /**
+     * Consulta el importe de la factura
+     * @return un double con dicho importe
+     */
     public double getImporte() {
         return importe;
     }
 
-    //Setters
+    /**
+     * Establece una nueva fecha para la factura
+     * @param f un LocalDate con la nueva fecha
+     * @throws IllegalArgumentException si la fecha pasada es null
+     */
     public void setFecha(LocalDate f){
         if(f == null)
             throw new IllegalArgumentException();
@@ -44,6 +69,11 @@ public class Factura {
         this.fecha = f;
     }
 
+    /**
+     * Establece un nuevo importe para la factura
+     * @param i un double con el nuevo importe
+     * @throws IllegalArgumentException si el importe pasado es menor que cero
+     */
     public void setImporte(double i){
         if(i < 0)
             throw new IllegalArgumentException();
