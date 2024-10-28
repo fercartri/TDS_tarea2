@@ -41,7 +41,7 @@ public class FacturaTest {
     @Test
     void testFacturaCreacionFacturaNoValidaImporteMenorLimite(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), -0.9);
+            Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), -0.01);
         });
     }
 
