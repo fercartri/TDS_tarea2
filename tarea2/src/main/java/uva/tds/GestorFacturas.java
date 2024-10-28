@@ -86,6 +86,14 @@ public class GestorFacturas {
     }
 
     /**
+     * Consulta las facturas que tiene el gestor por fecha de más antiguo a moderno
+     * @return un ArrayList de facturas con dichas facturas
+     */
+    public ArrayList<Factura> getFacturasPorFecha() {
+        return null;
+    }
+
+    /**
      * Establece el estado del gestor al dado
      * @param estado true para activar el gestor y false para desactivarlo
      */
