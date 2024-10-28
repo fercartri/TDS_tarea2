@@ -259,5 +259,27 @@ public class GestorFacturasTest {
         assertEquals(ordenado[2], f2);
     }
 
+    @Test
+    void testGestorFacturaListaDeFacturasPorImporte(){
+        Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 2, 22), 1.15);
+        Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 3, 22), 0.15);
+        Factura f3 = new Factura("Asunto3", LocalDate.of(2025, 1, 22), 2.15);
+
+        ArrayList<Factura> fs = new ArrayList<Factura>();
+        fs.add(f1);
+        fs.add(f2);
+        fs.add(f3);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        
+        g.agregar(fs);
+
+        Factura[] ordenado = g.getFacturasPorImporte();
+
+        assertEquals(ordenado[0], f3);
+        assertEquals(ordenado[1], f1);
+        assertEquals(ordenado[2], f2);
+    }
+
     
 }

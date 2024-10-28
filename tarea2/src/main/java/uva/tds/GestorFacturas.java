@@ -89,7 +89,7 @@ public class GestorFacturas {
 
     /**
      * Consulta las facturas que tiene el gestor por fecha de más antiguo a moderno
-     * @return un ArrayList de facturas con dichas facturas
+     * @return un array de facturas ordenadas por fecha
      */
     public Factura[] getFacturasPorFecha() {
         Factura[] fs = this.getFacturas().toArray(new Factura[0]);
@@ -97,6 +97,14 @@ public class GestorFacturas {
         Arrays.sort(fs, Comparator.comparing(Factura::getFecha));
 
         return fs;
+    }
+
+    /**
+     * Consulta las facturas que tiene el gestor por importe de mayor a menor cantidad
+     * @return un array de facturas ordenadas por importe
+     */
+    public Factura[] getFacturasPorImporte() {
+        return null;
     }
 
     /**
