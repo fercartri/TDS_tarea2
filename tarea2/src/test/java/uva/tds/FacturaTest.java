@@ -63,4 +63,13 @@ public class FacturaTest {
         });
     }
 
+    @Test
+    void testFacturaSetImporteConImporteValido(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 5.5);
+
+        f.setImporte(0);
+
+        assertEquals(f.getImporte(), 0);
+    }
+
 }
