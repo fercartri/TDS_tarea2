@@ -87,6 +87,14 @@ public class GestorFacturas {
         return f;
     }
 
+    private Factura getFactura(String asunto) {
+        for(Factura e : facturas)
+            if(e.getAsunto().equals(asunto))
+                return e;
+
+        return null;
+    }
+
     /**
      * Consulta las facturas que tiene el gestor por fecha de más antiguo a moderno
      * @return un array de facturas ordenadas por fecha
@@ -159,11 +167,11 @@ public class GestorFacturas {
     }
 
     public void setFecha(String asunto, LocalDate fecha){
-
+        getFactura(asunto).setFecha(fecha);
     }
 
     public void setImporte(String asunto, double importe){
-
+        getFactura(asunto).setImporte(importe);
     }
 
 }
