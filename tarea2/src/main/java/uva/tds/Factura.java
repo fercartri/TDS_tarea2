@@ -60,7 +60,7 @@ public class Factura {
     /**
      * Establece una nueva fecha para la factura
      * @param f un LocalDate con la nueva fecha
-     * @throws IllegalArgumentException si la fecha pasada es null
+     * @throws IllegalArgumentException si f es null
      */
     public void setFecha(LocalDate f){
         if(f == null)
@@ -72,7 +72,7 @@ public class Factura {
     /**
      * Establece un nuevo importe para la factura
      * @param i un double con el nuevo importe
-     * @throws IllegalArgumentException si el importe pasado es menor que cero
+     * @throws IllegalArgumentException si i es menor que cero
      */
     public void setImporte(double i){
         if(i < 0)
@@ -84,5 +84,10 @@ public class Factura {
     @Override
     public boolean equals(Object o){
         return this.asunto.equals(((Factura) o).getAsunto());
+    }
+
+    @Override
+    public String toString(){
+        return ("Asunto: " + getAsunto() + ", fecha: " + getFecha() + ", importe: " + getImporte());
     }
 }
