@@ -252,11 +252,11 @@ public class GestorFacturasTest {
         
         g.agregar(fs);
 
-        ArrayList<Factura> ordenado = g.getFacturasPorFecha();
+        Factura[] ordenado = g.getFacturasPorFecha();
 
-        assertEquals(ordenado.get(0), f3);
-        assertEquals(ordenado.get(1), f1);
-        assertEquals(ordenado.get(2), f2);
+        assertEquals(ordenado[0], f3);
+        assertEquals(ordenado[1], f1);
+        assertEquals(ordenado[2], f2);
     }
 
     

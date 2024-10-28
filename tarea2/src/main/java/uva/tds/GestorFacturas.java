@@ -2,6 +2,8 @@ package uva.tds;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class GestorFacturas {
 
@@ -89,8 +91,12 @@ public class GestorFacturas {
      * Consulta las facturas que tiene el gestor por fecha de más antiguo a moderno
      * @return un ArrayList de facturas con dichas facturas
      */
-    public ArrayList<Factura> getFacturasPorFecha() {
-        return null;
+    public Factura[] getFacturasPorFecha() {
+        Factura[] fs = this.getFacturas().toArray(new Factura[0]);
+
+        Arrays.sort(fs, Comparator.comparing(Factura::getFecha));
+
+        return fs;
     }
 
     /**
