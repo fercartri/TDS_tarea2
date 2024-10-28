@@ -104,7 +104,11 @@ public class GestorFacturas {
      * @return un array de facturas ordenadas por importe
      */
     public Factura[] getFacturasPorImporte() {
-        return null;
+        Factura[] fs = this.getFacturas().toArray(new Factura[0]);
+
+        Arrays.sort(fs, Comparator.comparing(Factura::getImporte).reversed());
+
+        return fs;
     }
 
     /**
