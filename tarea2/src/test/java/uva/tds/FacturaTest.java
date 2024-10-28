@@ -54,4 +54,13 @@ public class FacturaTest {
         assertEquals(f.getFecha(), LocalDate.of(2025, 2, 22));
     }
 
+    @Test
+    void testFacturaSetFechaConFechaNull(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 5.5);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            f.setFecha(null);
+        });
+    }
+
 }
