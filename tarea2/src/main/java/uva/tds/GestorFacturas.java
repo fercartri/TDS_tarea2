@@ -191,6 +191,9 @@ public class GestorFacturas {
         if(asunto == null)
             throw new IllegalArgumentException();
         
+        if(!existeFactura(asunto))
+            throw new IllegalArgumentException();
+        
         getFactura(asunto).setImporte(importe);
     }
 
