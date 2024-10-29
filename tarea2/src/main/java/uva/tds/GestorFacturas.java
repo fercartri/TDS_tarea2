@@ -188,6 +188,9 @@ public class GestorFacturas {
     }
 
     public void setImporte(String asunto, double importe){
+        if(asunto == null)
+            throw new IllegalArgumentException();
+        
         getFactura(asunto).setImporte(importe);
     }
 
