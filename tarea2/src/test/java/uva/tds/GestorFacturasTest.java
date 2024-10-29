@@ -257,22 +257,22 @@ public class GestorFacturasTest {
 
     @Test
     void testGestorFacturaActualizarFechaEImporteValidosEnGestorAbiertoYCerrado(){
-        Factura f = new Factura("Asunto2", LocalDate.of(2025, 3, 22), 0.15);
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
         
         g.agregar(f);
 
-        g.setFecha("Asunto2", LocalDate.of(2025, 4, 22));
-        g.setImporte("Asunto2", 0);
+        g.setFecha("Asunto", LocalDate.of(2025, 4, 22));
+        g.setImporte("Asunto", 0);
 
         assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getFecha(), LocalDate.of(2025, 4, 22));
         assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getImporte(), 0);
 
         g.setEstado(false);
 
-        g.setFecha("Asunto2", LocalDate.of(2025, 5, 22));
-        g.setImporte("Asunto2", 10.50);
+        g.setFecha("Asunto", LocalDate.of(2025, 5, 22));
+        g.setImporte("Asunto", 10.50);
 
         assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getFecha(), LocalDate.of(2025, 5, 22));
         assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getImporte(), 10.50);
@@ -280,7 +280,15 @@ public class GestorFacturasTest {
 
     @Test
     void testGestorFacturaActualizarFechaNoValidaMenorLimiteGestor(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
         
+        g.agregar(f);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            g.setFecha("Asunto", LocalDate.of(2023, 1, 1));
+        });
     }
 
     //Falta comprobra que no exista factura con asunto dado ademas de las comprobaciones de fecha e importe
