@@ -170,10 +170,21 @@ public class GestorFacturas {
         if(asunto == null || fecha == null)
             throw new IllegalArgumentException();
 
+        if(!existeFactura(asunto))
+            throw new IllegalArgumentException();
+
         if(fecha.isBefore(fechaInicio) || fecha.isAfter(fechaFin))
             throw new IllegalArgumentException();
 
         getFactura(asunto).setFecha(fecha);
+    }
+
+    private boolean existeFactura(String asunto){
+        for(Factura f : facturas)
+            if(f.getAsunto().equals(asunto))
+                return true;
+        
+        return false;
     }
 
     public void setImporte(String asunto, double importe){
