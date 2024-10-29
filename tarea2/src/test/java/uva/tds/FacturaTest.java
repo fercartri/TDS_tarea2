@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class FacturaTest {
 
+    //Constructor
     @Test
     void testFacturaCreacionFacturaValida(){
         Factura f = new Factura("A", LocalDate.of(2025, 1, 22), 0);
@@ -45,6 +46,8 @@ public class FacturaTest {
         });
     }
 
+    
+    //setFecha
     @Test
     void testFacturaSetFechaConFechaValida(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 5.5);
@@ -63,6 +66,8 @@ public class FacturaTest {
         });
     }
 
+
+    //setImporte
     @Test
     void testFacturaSetImporteConImporteValido(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 5.5);
