@@ -9,8 +9,9 @@ import org.junit.jupiter.api.Test;
 
 public class GestorFacturasTest {
 
+    //Constructor
     @Test
-    void testGestorFacturasValido(){
+    void testGestorFacturasCreacionValida(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 1), "Nombre");
         assertEquals(g.getFechaInicio(), LocalDate.of(2024, 12, 22));
         assertEquals(g.getFechaFin(), LocalDate.of(2025, 4, 1));
@@ -19,56 +20,58 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaNoValidoFechaInicioNull(){
+    void testGestorFacturaCreacionNoValidaFechaInicioNull(){
         assertThrows(IllegalArgumentException.class, () -> {
             GestorFacturas g = new GestorFacturas(null, LocalDate.of(2025, 4, 1), "Nombre");
         });
     }
 
     @Test
-    void testGestorFacturaNoValidoFechaFinNull(){
+    void testGestorFacturaCreacionNoValidaFechaFinNull(){
         assertThrows(IllegalArgumentException.class, () -> {
             GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), null, "Nombre");
         });
     }
 
     @Test
-    void testGestorFacturaNoValidoNombreNull(){
+    void testGestorFacturaCreacionNoValidaNombreNull(){
         assertThrows(IllegalArgumentException.class, () -> {
             GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 1), null);
         });
     }
 
     @Test
-    void testGestorFacturaNoValidoNombreMenorLimite(){
+    void testGestorFacturaCreacionNoValidaNombreMenorLimite(){
         assertThrows(IllegalArgumentException.class, () -> {
             GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 1), "");
         });
     }
 
     @Test
-    void testGestorFacturaNoValidoNombreSuperiorLimite(){
+    void testGestorFacturaCreacionNoValidaNombreSuperiorLimite(){
         assertThrows(IllegalArgumentException.class, () -> {
             GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 1), "Aaaaaaaaaaa");
         });
     }
 
     @Test
-    void testGestorFacturaNoValidoFechaFinMenorQueFechaInicio(){
+    void testGestorFacturaCreacionNoValidaFechaFinMenorQueFechaInicio(){
         assertThrows(IllegalArgumentException.class, () -> {
             GestorFacturas g = new GestorFacturas(LocalDate.of(2025, 4, 1), LocalDate.of(2024, 12, 22), "Nombre");
         });
     }
 
+
+    //setEstado
     @Test
-    void testGestorFacturaCambioEstadoDeTrueAFalse(){
+    void testGestorFacturaSetEstadoDeTrueAFalse(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
         g.setEstado(false);
         assertFalse(g.getEstado());
     }
 
     @Test
-    void testGestorFacturaCambioEstadoDeFalseATrue(){
+    void testGestorFacturaSetEstadoDeFalseATrue(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
         g.setEstado(false);
         g.setEstado(true);
@@ -76,7 +79,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaCambioEstadoMantenerEstado(){
+    void testGestorFacturaSetEstadoMantenerEstado(){
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 1, 22), "Nombre");
         g.setEstado(true);
         assertTrue(g.getEstado());
@@ -86,6 +89,8 @@ public class GestorFacturasTest {
         assertFalse(g.getEstado());
     }
 
+
+    //agregar
     @Test
     void testGestorFacturaAgregarFacturaValida(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 1, 22), 10.15);
@@ -210,8 +215,10 @@ public class GestorFacturasTest {
         });
     }
 
+
+    //getFacturasPorFecha
     @Test
-    void testGestorFacturaListaDeFacturasPorFecha(){
+    void testGestorFacturaGetFacturasPorFecha(){
         Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 2, 22), 10.15);
         Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 3, 22), 10.15);
         Factura f3 = new Factura("Asunto3", LocalDate.of(2025, 1, 22), 10.15);
@@ -225,15 +232,17 @@ public class GestorFacturasTest {
         
         g.agregar(fs);
 
-        Factura[] ordenado = g.getFacturasPorFecha();
+        ArrayList<Factura> ordenado = g.getFacturasPorFecha();
 
-        assertEquals(ordenado[0], f3);
-        assertEquals(ordenado[1], f1);
-        assertEquals(ordenado[2], f2);
+        assertEquals(ordenado.get(0), f3);
+        assertEquals(ordenado.get(1), f1);
+        assertEquals(ordenado.get(2), f2);
     }
 
+
+    //getFacturasPorImporte
     @Test
-    void testGestorFacturaListaDeFacturasPorImporte(){
+    void testGestorFacturaGetFacturasPorImporte(){
         Factura f1 = new Factura("Asunto1", LocalDate.of(2025, 2, 22), 2.15);
         Factura f2 = new Factura("Asunto2", LocalDate.of(2025, 3, 22), 0.15);
         Factura f3 = new Factura("Asunto3", LocalDate.of(2025, 1, 22), 1.15);
@@ -247,16 +256,17 @@ public class GestorFacturasTest {
         
         g.agregar(fs);
 
-        Factura[] ordenado = g.getFacturasPorImporte();
+        ArrayList<Factura> ordenado = g.getFacturasPorImporte();
 
-        assertEquals(ordenado[0], f1);
-        assertEquals(ordenado[1], f3);
-        assertEquals(ordenado[2], f2);
+        assertEquals(ordenado.get(0), f1);
+        assertEquals(ordenado.get(1), f3);
+        assertEquals(ordenado.get(2), f2);
     }
 
 
+    //setFecha
     @Test
-    void testGestorFacturaActualizarFechaEImporteValidosEnGestorAbiertoYCerrado(){
+    void testGestorFacturaSetFechaEImporteValidosEnGestorAbiertoYCerrado(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -279,7 +289,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarFechaNoValidaMenorLimiteGestor(){
+    void testGestorFacturaSetFechaNoValidaMenorLimiteGestor(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -292,7 +302,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarFechaNoValidaMayorLimiteGestor(){
+    void testGestorFacturaSetFechaNoValidaMayorLimiteGestor(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -305,7 +315,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarFechaNoValidaNull(){
+    void testGestorFacturaSetFechaNoValidaNull(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -318,7 +328,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarFechaNoValidaAsuntoNull(){
+    void testGestorFacturaSetFechaNoValidaAsuntoNull(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -331,7 +341,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarFechaNoValidaAsuntoNoExiste(){
+    void testGestorFacturaSetFechaNoValidaAsuntoNoExiste(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -343,8 +353,10 @@ public class GestorFacturasTest {
         });
     }
 
+
+    //setImporte
     @Test
-    void testGestorFacturaActualizarImporteNoValidaMenorACero(){
+    void testGestorFacturaSetImporteNoValidaMenorACero(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -357,7 +369,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarImporteNoValidaAsuntoNull(){
+    void testGestorFacturaSetImporteNoValidaAsuntoNull(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
@@ -370,7 +382,7 @@ public class GestorFacturasTest {
     }
 
     @Test
-    void testGestorFacturaActualizarImporteNoValidaAsuntoNoExiste(){
+    void testGestorFacturaSetImporteNoValidaAsuntoNoExiste(){
         Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
 
         GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");

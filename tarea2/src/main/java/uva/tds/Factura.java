@@ -59,8 +59,8 @@ public class Factura {
 
     /**
      * Establece una nueva fecha para la factura
-     * @param f un LocalDate con la nueva fecha
-     * @throws IllegalArgumentException si f es null
+     * @param fecha un LocalDate con la nueva fecha
+     * @throws IllegalArgumentException si fecha es null
      */
     public void setFecha(LocalDate fecha){
         if(fecha == null)
@@ -71,8 +71,8 @@ public class Factura {
 
     /**
      * Establece un nuevo importe para la factura
-     * @param i un double con el nuevo importe
-     * @throws IllegalArgumentException si i es menor que cero
+     * @param importe un double con el nuevo importe
+     * @throws IllegalArgumentException si el importe es menor que cero
      */
     public void setImporte(double importe){
         if(importe < 0)

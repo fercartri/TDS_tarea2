@@ -79,30 +79,19 @@ public class GestorFacturas {
      * @return un ArrayList de facturas con dichas facturas
      */
     public ArrayList<Factura> getFacturas() {
-        ArrayList<Factura> f = new ArrayList<Factura>();
-
-        for(Factura e : facturas)
-            f.add(e);
-
-        return f;
-    }
-
-    private Factura getFactura(String asunto) {
-        for(Factura e : facturas)
-            if(e.getAsunto().equals(asunto))
-                return e;
-
-        return null;
+        return facturas;
     }
 
     /**
      * Consulta las facturas que tiene el gestor por fecha de más antiguo a moderno
      * @return un array de facturas ordenadas por fecha
      */
-    public Factura[] getFacturasPorFecha() {
-        Factura[] fs = this.getFacturas().toArray(new Factura[0]);
+    public ArrayList<Factura> getFacturasPorFecha() {
+        Factura[] aux = this.getFacturas().toArray(new Factura[0]);
 
-        Arrays.sort(fs, Comparator.comparing(Factura::getFecha));
+        Arrays.sort(aux, Comparator.comparing(Factura::getFecha));
+
+        ArrayList<Factura> fs = new ArrayList<>(Arrays.asList(aux));
 
         return fs;
     }
@@ -111,16 +100,18 @@ public class GestorFacturas {
      * Consulta las facturas que tiene el gestor por importe de mayor a menor cantidad
      * @return un array de facturas ordenadas por importe
      */
-    public Factura[] getFacturasPorImporte() {
-        Factura[] fs = this.getFacturas().toArray(new Factura[0]);
+    public ArrayList<Factura> getFacturasPorImporte() {
+        Factura[] aux = this.getFacturas().toArray(new Factura[0]);
 
-        Arrays.sort(fs, Comparator.comparing(Factura::getImporte).reversed());
+        Arrays.sort(aux, Comparator.comparing(Factura::getImporte).reversed());
+
+        ArrayList<Factura> fs = new ArrayList<>(Arrays.asList(aux));
 
         return fs;
-    }
+    }   
 
     /**
-     * Establece el estado del gestor al dado
+     * Establece el estado del gestor
      * @param estado true para activar el gestor y false para desactivarlo
      */
     public void setEstado(boolean estado){
@@ -129,43 +120,53 @@ public class GestorFacturas {
     
     /**
      * Añade una factura al gestor
-     * @param f la factura a añadir
+     * @param factura la factura a añadir
      * @throws IllegalArgumentException si la factura es null
      * @throws IllegalStateException si el gestor está desactivado
      * @throws IllegalArgumentException si la fecha de la factura es anterior a la de inicio de facturación del gestor
      * @throws IllegalArgumentException si la fecha de la factura es posterior a la de fin de facturación del gestor
      * @throws IllegalArgumentException si la factura dada ya se encuentra en el gestor
      */
-    public void agregar(Factura f){
-        if(f == null)
+    public void agregar(Factura factura){
+        if(factura == null)
             throw new IllegalArgumentException();
 
         if(!getEstado())
             throw new IllegalStateException();
 
-        if(f.getFecha().isBefore(fechaInicio) || f.getFecha().isAfter(fechaFin))
+        if(factura.getFecha().isBefore(fechaInicio) || factura.getFecha().isAfter(fechaFin))
             throw new IllegalArgumentException();
 
-        if(facturas.contains(f))
+        if(facturas.contains(factura))
             throw new IllegalArgumentException();
 
-        facturas.add(f);
+        facturas.add(factura);
     }
 
     /**
      * Añade un grupo de facturas al gestor
-     * @param fs un ArrayList de facturas a agregar
+     * @param facturas un ArrayList de facturas a agregar
      * @throws IllegalArgumentException si alguna factura es null
      * @throws IllegalStateException si el gestor está desactivado
      * @throws IllegalArgumentException si alguna fecha de factura es anterior a la de inicio de facturación del gestor
      * @throws IllegalArgumentException si alguna fecha de factura es posterior a la de fin de facturación del gestor
      * @throws IllegalArgumentException si alguna factura dada ya se encuentra en el gestor
      */
-    public void agregar(ArrayList<Factura> fs){
-        for(Factura f : fs)
+    public void agregar(ArrayList<Factura> facturas){
+        for(Factura f : facturas)
             agregar(f);
     }
-
+ 
+    /**
+     * Actualiza la fecha de una factura del gestor
+     * @param asunto el asunto de la factura a modificar
+     * @param fecha la nueva fecha de la factura
+     * @throws IllegalArgumentException si el asunto es null
+     * @throws IllegalArgumentException si la fecha es null
+     * @throws IllegalArgumentException si no existe una factura con dicho asunto en el gestor
+     * @throws IllegalArgumentException si la fecha es anterior a la de inicio de facturación del gestor
+     * @throws IllegalArgumentException si la fecha es posterior a la de fin de facturación del gestor
+     */
     public void setFecha(String asunto, LocalDate fecha){
         if(asunto == null || fecha == null)
             throw new IllegalArgumentException();
@@ -179,14 +180,14 @@ public class GestorFacturas {
         getFactura(asunto).setFecha(fecha);
     }
 
-    private boolean existeFactura(String asunto){
-        for(Factura f : facturas)
-            if(f.getAsunto().equals(asunto))
-                return true;
-        
-        return false;
-    }
-
+    /**
+     * Actualiza el importe de una factura del gestor
+     * @param asunto el asunto de la factura a modificar
+     * @param importe el nuevo importe de la factura
+     * @throws IllegalArgumentException si el asunto es null
+     * @throws IllegalArgumentException si no existe una factura con dicho asunto en el gestor
+     * @throws IllegalArgumentException si el importe es menor que cero
+     */
     public void setImporte(String asunto, double importe){
         if(asunto == null)
             throw new IllegalArgumentException();
@@ -197,4 +198,21 @@ public class GestorFacturas {
         getFactura(asunto).setImporte(importe);
     }
 
+
+    //Métodos privados
+    private Factura getFactura(String asunto) {
+        for(Factura e : facturas)
+            if(e.getAsunto().equals(asunto))
+                return e;
+
+        return null;
+    }
+
+    private boolean existeFactura(String asunto){
+        for(Factura f : facturas)
+            if(f.getAsunto().equals(asunto))
+                return true;
+        
+        return false;
+    }
 }
