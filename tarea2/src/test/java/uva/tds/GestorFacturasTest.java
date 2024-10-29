@@ -263,18 +263,18 @@ public class GestorFacturasTest {
         
         g.agregar(f);
 
-        g.setFecha("Asunto", LocalDate.of(2025, 4, 22));
+        g.setFecha("Asunto", LocalDate.of(2025, 1, 22));
         g.setImporte("Asunto", 0);
 
-        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getFecha(), LocalDate.of(2025, 4, 22));
+        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getFecha(), LocalDate.of(2025, 1, 22));
         assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getImporte(), 0);
 
         g.setEstado(false);
 
-        g.setFecha("Asunto", LocalDate.of(2025, 5, 22));
+        g.setFecha("Asunto", LocalDate.of(2025, 2, 22));
         g.setImporte("Asunto", 10.50);
 
-        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getFecha(), LocalDate.of(2025, 5, 22));
+        assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getFecha(), LocalDate.of(2025, 2, 22));
         assertEquals(g.getFacturas().get(g.getFacturas().indexOf(f)).getImporte(), 10.50);
     }
 

@@ -167,9 +167,9 @@ public class GestorFacturas {
     }
 
     public void setFecha(String asunto, LocalDate fecha){
-        if(fecha.isBefore(fechaInicio))
+        if(fecha.isBefore(fechaInicio) || fecha.isAfter(fechaFin))
             throw new IllegalArgumentException();
-            
+
         getFactura(asunto).setFecha(fecha);
     }
 
