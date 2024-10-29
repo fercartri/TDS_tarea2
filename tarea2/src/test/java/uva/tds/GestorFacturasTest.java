@@ -343,4 +343,17 @@ public class GestorFacturasTest {
         });
     }
 
+    @Test
+    void testGestorFacturaActualizarImporteNoValidaMenorACero(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        
+        g.agregar(f);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            g.setImporte("Asunto", -0.1);
+        });
+    }
+
 }
