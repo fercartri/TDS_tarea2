@@ -1,3 +1,7 @@
+/**
+ * @author Fernando Carmona Palacio
+ */
+
 package uva.tds;
 
 import java.time.LocalDate;
