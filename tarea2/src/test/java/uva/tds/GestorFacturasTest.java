@@ -317,5 +317,18 @@ public class GestorFacturasTest {
         });
     }
 
+    @Test
+    void testGestorFacturaActualizarFechaNoValidaAsuntoNull(){
+        Factura f = new Factura("Asunto", LocalDate.of(2025, 3, 22), 0.15);
+
+        GestorFacturas g = new GestorFacturas(LocalDate.of(2024, 12, 22), LocalDate.of(2025, 4, 22), "Nombre");
+        
+        g.agregar(f);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            g.setFecha(null, LocalDate.of(2025, 1, 1));
+        });
+    }
+
     //Falta comprobra que no exista factura con asunto dado ademas de las comprobaciones de fecha e importe
 }
